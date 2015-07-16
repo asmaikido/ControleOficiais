@@ -10,7 +10,7 @@ public class TestOficialDAO {
 		// Criando oficial
 		Oficial oficial = new Oficial();
 		oficial.setOf_nome("Edilene Neix Machado");
-		oficial.setOf_matricula("111111");
+		oficial.setOf_matricula("123456");
 		
 		// Cadastrando oficial no banco de dados
 		OficialDAO oficialDAO = new OficialDAO();

@@ -10,14 +10,15 @@ public class OficialDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	public void cadastrar(Oficial oficial) {
-		String sql = "insert into oficial (of_matricula, of_nome) values (?,?)";
-		
+		String sql = "INSERT INTO \"tbl_Oficial\" (\"of_Matricula\", \"of_Nome\") VALUES (?,?)";
+		System.out.println("Conectado...");
 		try {
 			//Criando um Statement
 			PreparedStatement preparador = conexao.prepareStatement(sql);
-			preparador.setString(1, oficial.getOf_nome());
-			preparador.setString(2, oficial.getOf_matricula());
+			preparador.setString(1, oficial.getOf_matricula());
+			preparador.setString(2, oficial.getOf_nome());
 			//Executando o comando SQL no banco
+			System.out.println(preparador);
 			preparador.execute();
 			//Fechando o objeto preparador
 			preparador.close();
@@ -27,5 +28,5 @@ public class OficialDAO {
 		}
 		
 	}
-
+	
 }
