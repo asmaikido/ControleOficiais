@@ -7,7 +7,7 @@ public class TestOficialDAO {
 
 	public static void main(String[] args) {
 		
-		testCadastrar();
+		testBuscarPorMatricula("109673");
 		
 		
 	}
@@ -50,5 +50,33 @@ public class TestOficialDAO {
 				
 				System.out.println("Cadastrado com sucesso.");
 	}
+	
+	public static void testSalvar() {
+		// Salvando oficial
+				Oficial oficial = new Oficial();
+				oficial.setOf_nome("Deputado Tiririca");
+				oficial.setOf_matricula("456789");
+				
+				// Cadastrando oficial no banco de dados
+				OficialDAO oficialDAO = new OficialDAO();
+				oficialDAO.salvar(oficial);
+				
+				System.out.println("Salvado com sucesso.");
+	}
+	
+	
+	public static void testBuscarPorMatricula(String matricula) {
+		// Buscando oficial
+				Oficial oficial = new Oficial();
+				oficial.setOf_nome("Deputado Tiririca");
+				oficial.setOf_matricula("456789");
+				
+				// Cadastrando oficial no banco de dados
+				OficialDAO oficialDAO = new OficialDAO();
+				oficialDAO.buscarPorMatricula(matricula);
+				
+				System.out.println("Salvado com sucesso.");
+	}
+	
 
 }
