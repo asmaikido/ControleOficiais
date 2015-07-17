@@ -1,4 +1,4 @@
-package jar;
+package br.com.asm.controleoficiais;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

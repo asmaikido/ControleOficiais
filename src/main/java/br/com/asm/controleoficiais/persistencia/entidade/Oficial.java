@@ -1,4 +1,4 @@
-package jar.persistencia.entidade;
+package br.com.asm.controleoficiais.persistencia.entidade;
 
 public class Oficial {
 	private String of_matricula;

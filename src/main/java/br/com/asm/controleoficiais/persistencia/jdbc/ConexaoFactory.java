@@ -1,4 +1,4 @@
-package jar.persistencia.jdbc;
+package br.com.asm.controleoficiais.persistencia.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

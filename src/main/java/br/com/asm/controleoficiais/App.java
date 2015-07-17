@@ -1,4 +1,4 @@
-package jar;
+package br.com.asm.controleoficiais;
 
 /**
  * Hello world!
