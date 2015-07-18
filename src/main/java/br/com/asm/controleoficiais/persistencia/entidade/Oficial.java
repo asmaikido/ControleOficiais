@@ -1,6 +1,10 @@
 package br.com.asm.controleoficiais.persistencia.entidade;
 
 public class Oficial {
+	@Override
+	public String toString() {
+		return "Oficial [of_matricula=" + of_matricula + ", of_nome=" + of_nome + "]";
+	}
 	private String of_matricula;
 	private String of_nome;
 	
