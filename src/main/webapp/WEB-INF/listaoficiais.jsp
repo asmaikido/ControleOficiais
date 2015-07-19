@@ -29,7 +29,7 @@
 		<tr>
 			<td><%=o.getOf_nome()%></td>
 			<td><%=o.getOf_matricula()%></td>
-			<td> <a href="javascript:confirmaexclusao(<%=o.getOf_matricula()%>)">excluir</a></td>
+			<td> <a href="javascript:confirmaexclusao(<%=o.getOf_matricula()%>)">excluir</a> | <a href="ofcontroller.do?acao=alterar&matricula=<%=o.getOf_matricula()%>">alterar</a> </td>
 		</tr>
 	<%}%>
 	</table>

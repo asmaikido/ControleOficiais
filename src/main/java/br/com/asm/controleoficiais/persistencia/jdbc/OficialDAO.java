@@ -18,7 +18,6 @@ public class OficialDAO {
 	 */
 	public void cadastrar(Oficial oficial) {
 		String sql = "INSERT INTO \"tbl_Oficial\" (\"of_Matricula\", \"of_Nome\") VALUES (?,?)";
-		System.out.println("Conectado...");
 		try {
 			//Criando um Statement
 			PreparedStatement preparador = conexao.prepareStatement(sql);
@@ -42,10 +41,11 @@ public class OficialDAO {
 	 */
 	public void alterar(Oficial oficial) {
 		// Alterando o oficial
-		String sql = "UPDATE \"tbl_Oficial\" set \"of_Nome\" = ? WHERE \"of_Matricula\" = ?";
+		String sql = "UPDATE \"tbl_Oficial\" set \"of_Nome\" = ?, \"of_Matricula\" = ? WHERE \"of_Matricula\" = ?";
 		try (PreparedStatement preparador = conexao.prepareStatement(sql)) {
 			preparador.setString(1, oficial.getOf_nome());
 			preparador.setString(2, oficial.getOf_matricula());
+			preparador.setString(3, oficial.getOf_matricula());
 			//Executando o comando SQL no banco
 			System.out.println(preparador);
 			preparador.execute();
@@ -57,6 +57,15 @@ public class OficialDAO {
 		}
 	}
 
+	public void salvar(Oficial oficial) {
+		// Salvando o oficial
+		if (oficial != null) {
+			alterar(oficial);
+		} else {
+			cadastrar(oficial);
+		}			
+	}
+	
 	/**
 	 * Deleta os dados do oficial no banco de dados.
 	 * @param oficial É um objeto que contém os dados referentes ao oficial que será apagado.

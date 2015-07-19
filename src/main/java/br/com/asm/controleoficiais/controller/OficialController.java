@@ -57,8 +57,18 @@ public class OficialController extends HttpServlet {
 			req.setAttribute("listaoficiais", lista);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/listaoficiais.jsp");
 			dispatcher.forward(req, resp);
-		} else if
-		System.out.println("Chamou o GET!");
+			
+		} else if (acao.equals("alterar")) {
+			
+			String matricula = req.getParameter("matricula");
+			OficialDAO oficialDAO = new OficialDAO();
+			Oficial oficial = oficialDAO.buscarPorMatricula(matricula);
+			req.setAttribute("oficial", oficial);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/formoficial.jsp");
+			dispatcher.forward(req, resp);
+			
+		}
+		
 				
 	}
 	
@@ -74,7 +84,7 @@ public class OficialController extends HttpServlet {
 		oficial.setOf_matricula(matricula);
 		
 		OficialDAO oficialDAO = new OficialDAO();
-		oficialDAO.cadastrar(oficial);
+		oficialDAO.salvar(oficial);
 		
 		resp.getWriter().print("<b>Oficial cadastrado com sucesso!<b>");
 	}
