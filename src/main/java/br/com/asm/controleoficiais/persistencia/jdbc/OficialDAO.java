@@ -17,19 +17,17 @@ public class OficialDAO {
 	 * @param oficial É um objeto que contém os dados referentes ao oficial que será cadastrado.
 	 */
 	public void cadastrar(Oficial oficial) {
-		String sql = "INSERT INTO \"tbl_Oficial\" (\"of_Matricula\", \"of_Nome\") VALUES (?,?)";
+		String sql = "INSERT INTO \"tbl_Oficial\" (\"of_Matricula\", \"of_Nome\", \"of_Senha\") VALUES (?,?,MD5(?))";
 		try {
 			//Criando um Statement
 			PreparedStatement preparador = conexao.prepareStatement(sql);
 			preparador.setString(1, oficial.getOf_matricula());
 			preparador.setString(2, oficial.getOf_nome());
-			//Executando o comando SQL no banco
-			System.out.println(preparador);
+			preparador.setString(3, oficial.getOf_senha());
 			preparador.execute();
 			//Fechando o objeto preparador
 			preparador.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -41,18 +39,16 @@ public class OficialDAO {
 	 */
 	public void alterar(Oficial oficial) {
 		// Alterando o oficial
-		String sql = "UPDATE \"tbl_Oficial\" set \"of_Nome\" = ?, \"of_Matricula\" = ? WHERE \"of_Matricula\" = ?";
+		String sql = "UPDATE \"tbl_Oficial\" set \"of_Nome\" = ?, \"of_Senha\" = MD5(?) WHERE \"of_Matricula\" = ?";
 		try (PreparedStatement preparador = conexao.prepareStatement(sql)) {
 			preparador.setString(1, oficial.getOf_nome());
-			preparador.setString(2, oficial.getOf_matricula());
+			preparador.setString(2, oficial.getOf_senha());
 			preparador.setString(3, oficial.getOf_matricula());
 			//Executando o comando SQL no banco
-			System.out.println(preparador);
 			preparador.execute();
 			//Fechando o objeto preparador
 			preparador.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -80,7 +76,6 @@ public class OficialDAO {
 			//Fechando o objeto preparador
 			preparador.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -144,17 +139,17 @@ public class OficialDAO {
 	 * @return Objeto contendo os dados do oficial que foi autenticado; caso não seja encontrado, retorna null.
 	 */
 	public Oficial autenticar(Oficial oficialconsultado) {
-		String sql = "SELECT * FROM \"tbl_Oficial\" WHERE \"of_Matricula\" = ? AND \"of_Nome\" = ?";
+		String sql = "SELECT * FROM \"tbl_Oficial\" WHERE \"of_Matricula\" = ? AND \"of_Senha\" = MD5(?)";
+
 		try (PreparedStatement preparador = conexao.prepareStatement(sql)) {
-				preparador.setString(2, oficialconsultado.getOf_nome());
 				preparador.setString(1, oficialconsultado.getOf_matricula());
+				preparador.setString(2, oficialconsultado.getOf_senha());
 				//Retorno da consulta em Resultset
 				ResultSet resultado = preparador.executeQuery();
 				// Se tem registro
 				if (resultado.next()) {
 					Oficial oficialretorno = new Oficial();
 					oficialretorno.setOf_matricula(resultado.getString("of_Matricula"));
-					oficialretorno.setOf_nome(resultado.getString("of_Nome"));
 					return oficialretorno;
 				}
 		} catch (SQLException e) {

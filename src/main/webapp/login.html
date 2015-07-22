@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- Formulário para login do oficial -->
+	<h1>Controle de mandados para relatórios - versão 1</h1>
+	<form action="ofcontroller.do" method="post">
+		<label for="matricula">Matrícula</label>
+  		<input type="text" name="matricula" id="matricula" value="">
+  		<label for="senha">Senha</label>
+  		<input type="password" name="senha" id="senha" value="">
+  		
+  		<!-- Seta o atributo ação com o valor autenticar para OficialController -->
+  		<input type="hidden" name="acao" value="autenticar">
+  		
+  		<input type="submit" value="Autenticar">
+	</form>
+</body>
+</html>

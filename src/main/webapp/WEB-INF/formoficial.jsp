@@ -3,9 +3,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Formulário de entrada de dados de oficial</title>
+<title>Formulário de cadastro de dados de oficial</title>
 </head>
 <body>
+	<h1>Controle de mandados para relatórios - versão 1</h1>
 	<%Oficial oficial = (Oficial)request.getAttribute("oficial");%>
 	<form action="ofcontroller.do" method="post">
 		Nome: <input type="text" name="nome" value="<%=oficial.getOf_nome()%>"/>

@@ -9,8 +9,8 @@ public class TestOficialDAO {
 
 	public static void main(String[] args) {
 		
-		testBuscarPorMatricula();	
-		testBuscarTodos();
+		//testBuscarPorMatricula();	
+		//testBuscarTodos();
 		testAutenticar();
 	
 		
@@ -81,8 +81,8 @@ public class TestOficialDAO {
 		// Buscando oficial									
 		OficialDAO oficialDAO = new OficialDAO();
 		Oficial oficial = new Oficial();
-		oficial.setOf_nome("Alexandre da Silva Machado");
-		oficial.setOf_matricula("109673");
+		oficial.setOf_senha("123456");
+		oficial.setOf_matricula("111111");
 		
 		Oficial oficialretorno = oficialDAO.autenticar(oficial);
 		

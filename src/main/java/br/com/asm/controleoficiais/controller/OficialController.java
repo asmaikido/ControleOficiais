@@ -18,18 +18,15 @@ import br.com.asm.controleoficiais.persistencia.jdbc.OficialDAO;
 public class OficialController extends HttpServlet {
 	
 	public OficialController() {
-		System.out.println("Construtor ...");
 	}
 	
 	@Override
 	public void init() throws ServletException {
-		System.out.println("Init ...");
 		super.init();
 	}
 	
 	@Override
 	public void destroy() {
-		System.out.println("Destroy ...");
 		super.destroy();
 	}
 	
@@ -67,8 +64,7 @@ public class OficialController extends HttpServlet {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/formoficial.jsp");
 			dispatcher.forward(req, resp);
 			
-		}
-		
+		}		
 				
 	}
 	
@@ -76,16 +72,42 @@ public class OficialController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-		String nome = req.getParameter("nome");
+		//resp.setContentType("text/html");
+		String acao = req.getParameter("acao");	
 		String matricula = req.getParameter("matricula");
+		String nome = req.getParameter("nome");
+		String senha = req.getParameter("senha");
+			
+		if (acao.equals("autenticar")) {
+			Oficial oficial = new Oficial();
+			oficial.setOf_matricula(matricula);
+			oficial.setOf_senha(senha);
+			OficialDAO oficialDAO = new OficialDAO();
+			oficial = oficialDAO.autenticar(oficial);
+			if (oficial != null) {
+				resp.sendRedirect("ofcontroller.do?acao=listar");
+			} else {
+				req.setAttribute("oficial", oficial);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/formcadoficial.jsp");
+				dispatcher.forward(req, resp);
+			}	
+		} else if (acao.equals("cadastrar")) {
+			Oficial oficial = new Oficial();
+			oficial.setOf_matricula(matricula);
+			oficial.setOf_nome(nome);
+			oficial.setOf_senha(senha);
+			OficialDAO oficialDAO = new OficialDAO();
+			oficialDAO.cadastrar(oficial);
+			resp.sendRedirect("login.html");
+		} 
+				
+		//Oficial oficial = new Oficial();
+		//oficial.setOf_nome(nome);
+		//oficial.setOf_matricula(matricula);
 		
-		Oficial oficial = new Oficial();
-		oficial.setOf_nome(nome);
-		oficial.setOf_matricula(matricula);
+		//OficialDAO oficialDAO = new OficialDAO();
+		//oficialDAO.salvar(oficial);
 		
-		OficialDAO oficialDAO = new OficialDAO();
-		oficialDAO.salvar(oficial);
-		
-		resp.getWriter().print("<b>Oficial cadastrado com sucesso!<b>");
+		//resp.getWriter().print("<b>Oficial cadastrado com sucesso!<b>");
 	}
 }
