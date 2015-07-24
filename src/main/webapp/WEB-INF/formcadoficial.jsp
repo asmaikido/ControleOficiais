@@ -16,7 +16,7 @@
 
 	<p id="demo"></p>
 	
-	<% if (confirmacadastro()) {%>
+	<!--<% if (confirmacadastro()) {%>-->
 		<form action="ofcontroller.do" method="post">
 			<label for="nome">Nome</label>
   			<input type="text" name="nome" id="nome" value="">
@@ -29,7 +29,7 @@
   			<input type="hidden" name="acao" value="cadastrar">
   		
   			<input type="submit" value="Cadastrar">
-  	<%}%>
+ 	<%}%>
 	</form>
 	<script>
         window.onload = downScripts;
