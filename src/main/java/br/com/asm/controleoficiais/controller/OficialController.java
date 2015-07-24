@@ -17,6 +17,11 @@ import br.com.asm.controleoficiais.persistencia.jdbc.OficialDAO;
 @WebServlet(name = "ofcontroller", urlPatterns = {"/ofcontroller.do"})
 public class OficialController extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public OficialController() {
 	}
 	
