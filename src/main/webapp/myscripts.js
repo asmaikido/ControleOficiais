@@ -4,9 +4,10 @@
 
 "use strict";
 function confirmacadastro() {
-			if (window.confirm('Tem certeza de que deseja excluir?')){
+			if (window.confirm('Deseja cadastrar um novo oficial?')){
 				return true;
 			} else {
 				return false;
 			}
 		}
+

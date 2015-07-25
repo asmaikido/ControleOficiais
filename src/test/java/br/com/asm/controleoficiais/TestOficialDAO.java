@@ -9,8 +9,8 @@ public class TestOficialDAO {
 
 	public static void main(String[] args) {
 		
-		//testBuscarPorMatricula();	
-		//testBuscarTodos();
+		testBuscarPorMatricula();	
+		testBuscarTodos();
 		testAutenticar();
 	
 		
@@ -20,7 +20,7 @@ public class TestOficialDAO {
 	public static void testExcluir() {
 		// Alterando oficial
 				Oficial oficial = new Oficial();
-				oficial.setOf_matricula("999999");
+				oficial.setOfMatricula("999999");
 				
 				// Cadastrando oficial no banco de dados
 				OficialDAO oficialDAO = new OficialDAO();
@@ -32,8 +32,8 @@ public class TestOficialDAO {
 	public static void testAlterar() {
 		// Alterando oficial
 				Oficial oficial = new Oficial();
-				oficial.setOf_nome("Edilene Neix Machado");
-				oficial.setOf_matricula("123456");
+				oficial.setOfNome("Edilene Neix Machado");
+				oficial.setOfMatricula("123456");
 				
 				// Cadastrando oficial no banco de dados
 				OficialDAO oficialDAO = new OficialDAO();
@@ -46,8 +46,8 @@ public class TestOficialDAO {
 	public static void testCadastrar() {
 		// Criando oficial
 				Oficial oficial = new Oficial();
-				oficial.setOf_nome("Grazieli Machado");
-				oficial.setOf_matricula("999999");
+				oficial.setOfNome("Grazieli Machado");
+				oficial.setOfMatricula("999999");
 				
 				// Cadastrando oficial no banco de dados
 				OficialDAO oficialDAO = new OficialDAO();
@@ -81,8 +81,8 @@ public class TestOficialDAO {
 		// Buscando oficial									
 		OficialDAO oficialDAO = new OficialDAO();
 		Oficial oficial = new Oficial();
-		oficial.setOf_senha("123456");
-		oficial.setOf_matricula("111111");
+		oficial.setOfSenha("123456");
+		oficial.setOfMatricula("111111");
 		
 		Oficial oficialretorno = oficialDAO.autenticar(oficial);
 		

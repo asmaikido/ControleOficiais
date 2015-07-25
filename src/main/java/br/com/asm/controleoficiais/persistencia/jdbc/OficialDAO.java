@@ -21,9 +21,9 @@ public class OficialDAO {
 		try {
 			//Criando um Statement
 			PreparedStatement preparador = conexao.prepareStatement(sql);
-			preparador.setString(1, oficial.getOf_matricula());
-			preparador.setString(2, oficial.getOf_nome());
-			preparador.setString(3, oficial.getOf_senha());
+			preparador.setString(1, oficial.getOfMatricula());
+			preparador.setString(2, oficial.getOfNome());
+			preparador.setString(3, oficial.getOfSenha());
 			preparador.execute();
 			//Fechando o objeto preparador
 			preparador.close();
@@ -41,9 +41,9 @@ public class OficialDAO {
 		// Alterando o oficial
 		String sql = "UPDATE \"tbl_Oficial\" set \"of_Nome\" = ?, \"of_Senha\" = MD5(?) WHERE \"of_Matricula\" = ?";
 		try (PreparedStatement preparador = conexao.prepareStatement(sql)) {
-			preparador.setString(1, oficial.getOf_nome());
-			preparador.setString(2, oficial.getOf_senha());
-			preparador.setString(3, oficial.getOf_matricula());
+			preparador.setString(1, oficial.getOfNome());
+			preparador.setString(2, oficial.getOfSenha());
+			preparador.setString(3, oficial.getOfMatricula());
 			//Executando o comando SQL no banco
 			preparador.execute();
 			//Fechando o objeto preparador
@@ -69,7 +69,7 @@ public class OficialDAO {
 	public void excluir(Oficial oficial) {
 		String sql = "DELETE FROM \"tbl_Oficial\" WHERE \"of_Matricula\" = ?";
 		try (PreparedStatement preparador = conexao.prepareStatement(sql)) {
-			preparador.setString(1, oficial.getOf_matricula());
+			preparador.setString(1, oficial.getOfMatricula());
 			//Executando o comando SQL no banco
 			System.out.println(preparador);
 			preparador.execute();
@@ -98,8 +98,8 @@ public class OficialDAO {
 				// Se tem registro
 				if (resultado.next()) {
 					oficialretorno = new Oficial();
-					oficialretorno.setOf_matricula(resultado.getString("of_Matricula"));
-					oficialretorno.setOf_nome(resultado.getString("of_Nome"));	
+					oficialretorno.setOfMatricula(resultado.getString("of_Matricula"));
+					oficialretorno.setOfNome(resultado.getString("of_Nome"));	
 				}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -122,8 +122,8 @@ public class OficialDAO {
 				// Procura os oficiais que retornaram
 				while (resultado.next()) {
 					Oficial oficialretorno = new Oficial();
-					oficialretorno.setOf_matricula(resultado.getString("of_Matricula"));
-					oficialretorno.setOf_nome(resultado.getString("of_Nome"));	
+					oficialretorno.setOfMatricula(resultado.getString("of_Matricula"));
+					oficialretorno.setOfNome(resultado.getString("of_Nome"));	
 					// Adicionando oficial na lista
 					listaoficiais.add(oficialretorno);
 				}
@@ -142,14 +142,15 @@ public class OficialDAO {
 		String sql = "SELECT * FROM \"tbl_Oficial\" WHERE \"of_Matricula\" = ? AND \"of_Senha\" = MD5(?)";
 
 		try (PreparedStatement preparador = conexao.prepareStatement(sql)) {
-				preparador.setString(1, oficialconsultado.getOf_matricula());
-				preparador.setString(2, oficialconsultado.getOf_senha());
+				preparador.setString(1, oficialconsultado.getOfMatricula());
+				preparador.setString(2, oficialconsultado.getOfSenha());
 				//Retorno da consulta em Resultset
 				ResultSet resultado = preparador.executeQuery();
 				// Se tem registro
 				if (resultado.next()) {
 					Oficial oficialretorno = new Oficial();
-					oficialretorno.setOf_matricula(resultado.getString("of_Matricula"));
+					oficialretorno.setOfMatricula(resultado.getString("of_Matricula"));
+					oficialretorno.setOfNome(resultado.getString("of_Nome"));
 					return oficialretorno;
 				}
 		} catch (SQLException e) {

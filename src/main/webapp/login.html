@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="stylesheet.css"/> 
+    <title>Controle de mandados para relatÃ³rios</title>
 </head>
 <body>
-	<!-- Formulário para login do oficial -->
-	<h1>Controle de mandados para relatórios - versão 1</h1>
-	<form action="ofcontroller.do" method="post">
-		<label for="matricula">Matrícula</label>
-  		<input type="text" name="matricula" id="matricula" value="">
-  		<label for="senha">Senha</label>
-  		<input type="password" name="senha" id="senha" value="">
+	<header>
+	    <h1>Controle de mandados para relatÃ³rios - versÃ£o 1</h1>
+	</header>
+	<nav>
+        
+    </nav>
+    <section>
+	    <form action="autcontroller.do" method="post">
+		    <label for="matricula">MatrÃ­cula</label>
+  		    <input type="text" name="matricula" id="matricula" value="">
+  		    <label for="senha">Senha</label>
+  		    <input type="password" name="senha" id="senha" value="">
   		
-  		<!-- Seta o atributo ação com o valor autenticar para OficialController -->
-  		<input type="hidden" name="acao" value="autenticar">
+  		    <!-- Seta o atributo aÃ§Ã£o com o valor autenticar para OficialController -->
+  		    <input type="hidden" name="acao" value="autenticar">
   		
-  		<input type="submit" value="Autenticar">
-	</form>
+  		    <input type="submit" value="Autenticar">
+	    </form>
+	</section>
+	<footer>
+        Copyright Â© asm.com.br
+    </footer>
+    <script>
+    window.onload = downScripts;
+    function downScripts() {
+        var element = document.createElement("script");
+        element.src = "myscripts.js";
+        document.body.appendChild(element);
+    }
+    </script>
+    <noscript>Desculpe-me, seu "browser" nÃ£o suporta JavaScript!</noscript>
 </body>
 </html>

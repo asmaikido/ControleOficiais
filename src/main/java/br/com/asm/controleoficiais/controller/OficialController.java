@@ -46,10 +46,9 @@ public class OficialController extends HttpServlet {
 			
 			String matricula = req.getParameter("matricula");
 			Oficial oficial = new Oficial();
-			oficial.setOf_matricula(matricula);
+			oficial.setOfMatricula(matricula);
 			OficialDAO oficialDAO = new OficialDAO();
 			oficialDAO.excluir(oficial);
-			//resp.getWriter().print("<b>Oficial excluído com sucesso!<b>");
 			resp.sendRedirect("ofcontroller.do?acao=listar");
 		} else if (acao.equals("listar")) {
 			
@@ -57,7 +56,7 @@ public class OficialController extends HttpServlet {
 			OficialDAO oficialDAO = new OficialDAO();
 			List<Oficial> lista = oficialDAO.buscarTodos();
 			req.setAttribute("listaoficiais", lista);
-			RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/listaoficiais.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("listaoficiais.jsp");
 			dispatcher.forward(req, resp);
 			
 		} else if (acao.equals("alterar")) {
@@ -66,7 +65,7 @@ public class OficialController extends HttpServlet {
 			OficialDAO oficialDAO = new OficialDAO();
 			Oficial oficial = oficialDAO.buscarPorMatricula(matricula);
 			req.setAttribute("oficial", oficial);
-			RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/formoficial.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("formoficial.jsp");
 			dispatcher.forward(req, resp);
 			
 		}		
@@ -83,36 +82,14 @@ public class OficialController extends HttpServlet {
 		String nome = req.getParameter("nome");
 		String senha = req.getParameter("senha");
 			
-		if (acao.equals("autenticar")) {
+		if (acao.equals("cadastrar")) {
 			Oficial oficial = new Oficial();
-			oficial.setOf_matricula(matricula);
-			oficial.setOf_senha(senha);
-			OficialDAO oficialDAO = new OficialDAO();
-			oficial = oficialDAO.autenticar(oficial);
-			if (oficial != null) {
-				resp.sendRedirect("ofcontroller.do?acao=listar");
-			} else {
-				req.setAttribute("oficial", oficial);
-				RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/formcadoficial.jsp");
-				dispatcher.forward(req, resp);
-			}	
-		} else if (acao.equals("cadastrar")) {
-			Oficial oficial = new Oficial();
-			oficial.setOf_matricula(matricula);
-			oficial.setOf_nome(nome);
-			oficial.setOf_senha(senha);
+			oficial.setOfMatricula(matricula);
+			oficial.setOfNome(nome);
+			oficial.setOfSenha(senha);
 			OficialDAO oficialDAO = new OficialDAO();
 			oficialDAO.cadastrar(oficial);
 			resp.sendRedirect("login.html");
 		} 
-				
-		//Oficial oficial = new Oficial();
-		//oficial.setOf_nome(nome);
-		//oficial.setOf_matricula(matricula);
-		
-		//OficialDAO oficialDAO = new OficialDAO();
-		//oficialDAO.salvar(oficial);
-		
-		//resp.getWriter().print("<b>Oficial cadastrado com sucesso!<b>");
 	}
 }

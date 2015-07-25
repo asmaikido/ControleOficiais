@@ -15,6 +15,7 @@
 
 </head>
 <body>
+    <c:import url="includes/menu.jsp"></c:import>
 	<table border=1>
 		<tr>
 			<th> Nome </th>
@@ -23,9 +24,10 @@
 		</tr>
 	    <c:forEach items="${requestScope.listaoficiais}" var ="o">
 		    <tr>
-			    <td>${o.nome}</td>
-			    <td>${o.matricula}</td>
-			    <td> <a href="javascript:confirmaexclusao(${o.matricula})">excluir</a> | <a href="ofcontroller.do?acao=alterar&matricula=${o.matricula}">alterar</a> </td>
+			    <td>${o.ofNome}</td>
+			    <td>${o.ofMatricula}</td>
+			    <td> <a href="javascript:confirmaexclusao(${o.ofMatricula})">excluir</a> | <a href=
+			    "ofcontroller.do?acao=alterar&matricula=${o.ofMatricula}">alterar</a> </td>
 		    </tr>
 	    </c:forEach>
 	</table>
